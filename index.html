@@ -4,539 +4,751 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CODE Tender AI — Executive Proposal</title>
+<title>CODE Tender AI | Executive Proposal</title>
+
 <style>
 :root {
-  --bg: #111629;
-  --bg2: #091e34;
-  --panel: rgba(13,35,59,.85);
-  --cyan: #12d8dc;
-  --blue: #1983f0;
-  --purple: #a46aff;
-  --red: #f13b6a;
+  --navy: #111629;
+  --navy-dark: #081525;
+  --panel: #112b43;
+  --cyan: #13d7df;
+  --blue: #278af6;
+  --purple: #a671fb;
+  --red: #f04472;
   --white: #f7f9ff;
-  --muted: #b2c1d4;
-  --line: rgba(84,193,234,.4);
+  --muted: #b9c9da;
+  --line: rgba(76,190,225,.42);
 }
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0;
   width: 100%;
-  height: 100%;
-  background: #070c19;
+  min-height: 100%;
+  background: #060d19;
   color: var(--white);
   font-family: "Segoe UI", Arial, sans-serif;
 }
+
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
 }
+
+/* PRESENTATION FRAME */
+
 .presentation {
-  position: relative;
   width: min(100vw, 177.7778vh);
   aspect-ratio: 16 / 9;
+  position: relative;
   overflow: hidden;
-  background: var(--bg);
+  container-type: inline-size;
+  background: var(--navy);
 }
+
+/* INDIVIDUAL SLIDES */
+
 .slide {
   position: absolute;
   inset: 0;
   display: none;
-  padding: 3.6% 4.4%;
   flex-direction: column;
+  padding: 3.5% 4.5%;
   overflow: hidden;
+
   background:
-    radial-gradient(ellipse at 88% 90%,
-      rgba(0,133,201,.34), transparent 45%),
-    linear-gradient(122deg,
-      #1d192e 0%, #11172c 54%, #092942 100%);
+    radial-gradient(
+      ellipse at 95% 100%,
+      rgba(0,131,202,.25),
+      transparent 42%
+    ),
+    linear-gradient(
+      120deg,
+      #1b192e 0%,
+      #12182d 50%,
+      #08263e 100%
+    );
 }
-.slide.active { display: flex; }
+
+.slide.active {
+  display: flex;
+}
+
 .slide::before {
   content: "";
   position: absolute;
-  width: 44%;
-  height: 135%;
-  top: -20%;
   right: -25%;
-  transform: rotate(31deg);
+  top: -20%;
+  width: 46%;
+  height: 140%;
+  transform: rotate(30deg);
   background: linear-gradient(
     110deg,
-    rgba(10,225,229,.43),
-    rgba(0,115,224,.17),
+    rgba(14,206,225,.31),
+    rgba(25,109,220,.11),
     transparent
   );
-  border-left: 2px solid rgba(0,229,238,.6);
+  border-left: 1px solid rgba(23,210,222,.45);
   pointer-events: none;
 }
+
 .slide::after {
   content: "";
   position: absolute;
-  width: 55%;
-  height: 30%;
-  right: -23%;
-  bottom: -20%;
+  right: -27%;
+  bottom: -28%;
+  width: 54%;
+  height: 35%;
   transform: rotate(-32deg);
-  background: linear-gradient(100deg,transparent,var(--red));
-  opacity: .48;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(240,68,114,.55)
+  );
   pointer-events: none;
 }
+
 .slide > * {
   position: relative;
   z-index: 2;
 }
+
+/* LOGO */
+
 .brand {
-  height: 8%;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 100%;
+  height: 8%;
+  min-height: 0;
 }
+
 .brand img {
+  display: block;
+  width: auto;
   height: 100%;
-  max-width: 19%;
+  max-width: 22%;
+  max-height: 100%;
   object-fit: contain;
   object-position: left center;
 }
+
 .brand-fallback {
-  font-size: clamp(18px,2.3vw,42px);
-  font-weight: 500;
-  letter-spacing: .09em;
+  display: none;
+  font-size: 3cqw;
+  font-weight: 700;
+  letter-spacing: .06em;
 }
+
+/* ACCENTS */
+
 .accent {
   display: flex;
-  gap: 6px;
-  margin: 2.5% 0 1.8%;
+  gap: 7px;
+  margin: 2% 0 1.7%;
+  flex-shrink: 0;
 }
+
 .accent span {
-  height: 5px;
   width: 4%;
-  min-width: 28px;
-  border-radius: 8px;
+  height: .36cqw;
+  border-radius: 10px;
 }
-.accent span:nth-child(1) { background: var(--cyan); }
-.accent span:nth-child(2) { background: var(--blue); }
-.accent span:nth-child(3) { background: var(--red); }
-h1,h2,h3,p { margin: 0; }
+
+.accent span:nth-child(1) {
+  background: var(--cyan);
+}
+
+.accent span:nth-child(2) {
+  background: var(--blue);
+}
+
+.accent span:nth-child(3) {
+  background: var(--red);
+}
+
+/* TYPOGRAPHY */
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
 h1 {
-  font-size: clamp(36px,5.0vw,86px);
+  font-size: 5.8cqw;
   line-height: 1.1;
   letter-spacing: -.035em;
 }
+
 h2 {
-  font-size: clamp(24px,3.55vw,63px);
-  line-height: 1.15;
+  font-size: 3.55cqw;
+  line-height: 1.14;
   letter-spacing: -.025em;
 }
+
 h3 {
-  font-size: clamp(17px,2vw,34px);
+  font-size: 2cqw;
+  line-height: 1.2;
 }
+
 .subtitle {
-  color: #e0e8f9;
-  font-size: clamp(17px,2.45vw,42px);
-  margin-top: .5%;
+  font-size: 2.35cqw;
+  color: #dce7f5;
+  margin-top: .6%;
 }
-.small {
-  color: var(--muted);
-  font-size: clamp(11px,1.18vw,22px);
-  line-height: 1.45;
-}
+
 .footer {
   margin-top: auto;
-  font-size: clamp(11px,1.13vw,20px);
-  color: #c1d0e5;
+  color: #d2ddec;
+  font-size: 1.25cqw;
   font-style: italic;
 }
+
+.small {
+  font-size: 1.25cqw;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* CARDS */
+
 .card {
+  border: 1.5px solid var(--line);
   background: linear-gradient(
     135deg,
-    rgba(12,45,68,.95),
-    rgba(25,30,59,.88)
+    rgba(12,45,68,.94),
+    rgba(25,30,59,.89)
   );
-  border: 1.5px solid var(--line);
-  border-radius: 16px;
+  border-radius: 1.3cqw;
   padding: 2%;
+  min-width: 0;
+  min-height: 0;
 }
+
 .card p {
-  font-size: clamp(13px,1.55vw,27px);
-  line-height: 1.36;
-  color: #e6ecf8;
+  color: #e5edfa;
+  font-size: 1.47cqw;
+  line-height: 1.35;
 }
+
 .teal {
   border-color: var(--cyan);
   background: linear-gradient(
-    135deg,rgba(1,93,111,.52),rgba(14,30,59,.9)
+    135deg,
+    rgba(0,91,106,.47),
+    rgba(14,30,59,.91)
   );
 }
-.violet { border-color: var(--purple); }
-.pink { border-color: var(--red); }
-.icon {
-  font-size: clamp(26px,3.0vw,52px);
-  color: var(--cyan);
-  line-height: 1.1;
+
+.violet {
+  border-color: var(--purple);
 }
 
-/* Slide 1 */
+.pink {
+  border-color: var(--red);
+}
+
+.icon {
+  font-size: 3.1cqw;
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+
+/* SLIDE 1 */
+
 .cover-title {
   margin-top: 5%;
-  font-size: clamp(43px,5.8vw,104px);
+  font-size: 6cqw;
 }
+
 .cover-subtitle {
-  font-size: clamp(29px,4vw,72px);
-  margin-top: .7%;
+  font-size: 4cqw;
   font-weight: 300;
+  margin-top: .7%;
 }
+
 .cover-line {
-  margin-top: 3%;
   display: flex;
   gap: 2%;
   align-items: center;
-  font-size: clamp(18px,2.45vw,43px);
+  margin-top: 3%;
+  font-size: 2.4cqw;
 }
+
 .cover-line::before {
   content: "";
-  width: 6px;
-  align-self: stretch;
-  background: var(--cyan);
+  width: .45cqw;
+  min-height: 3.2cqw;
   border-radius: 6px;
+  background: var(--cyan);
 }
+
 .tagline {
-  font-style: italic;
   margin-top: 3%;
-  font-size: clamp(14px,1.8vw,32px);
-  color: #f1f4ff;
+  max-width: 80%;
+  color: #e7eef8;
+  font-style: italic;
+  font-size: 1.8cqw;
+  line-height: 1.35;
 }
+
 .cover-bottom {
   margin-top: auto;
   display: flex;
-  gap: 5%;
   align-items: center;
-  font-size: clamp(11px,1.45vw,27px);
+  gap: 5%;
+  font-size: 1.4cqw;
 }
+
 .cover-bottom div + div {
-  border-left: 2px solid #6b7890;
+  border-left: 2px solid #6a7891;
   padding-left: 4%;
 }
 
-/* Slide 2 */
+/* SLIDE 2 */
+
 .challenge-layout {
   display: grid;
   grid-template-columns: 1fr 1.04fr;
   gap: 5%;
-  margin-top: 3.5%;
   flex: 1;
   min-height: 0;
+  margin-top: 3.5%;
 }
+
+.challenge-column,
+.opportunity-column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .section-label {
-  font-size: clamp(19px,2.1vw,39px);
+  font-size: 2.15cqw;
   margin-bottom: 3%;
 }
+
 .rule {
-  width: 14%;
-  height: 4px;
+  width: 15%;
+  height: .32cqw;
+  min-height: 3px;
   background: var(--cyan);
-  border-radius: 6px;
+  border-radius: 8px;
   margin-bottom: 4%;
 }
+
 .challenge-list {
   display: flex;
   flex-direction: column;
-  gap: 3%;
+  gap: 2.5%;
+  flex: 1;
+  min-height: 0;
 }
+
 .challenge-item {
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: 5%;
-  padding: 2.5% 4%;
-  flex: 1;
+  gap: 4%;
+  padding: 2.5% 3.5%;
 }
-.challenge-item .icon { min-width: 12%; }
+
+.challenge-item .icon {
+  min-width: 11%;
+  text-align: center;
+}
+
 .challenge-item p {
-  font-size: clamp(12px,1.48vw,26px);
+  font-size: 1.43cqw;
 }
+
 .opportunity {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  gap: 5%;
-  padding: 6%;
-  height: 75%;
+  justify-content: space-evenly;
+  flex: 1;
+  gap: 4%;
+  padding: 5%;
 }
+
 .opportunity-line {
   display: flex;
   align-items: center;
   gap: 5%;
-  font-size: clamp(16px,2.0vw,35px);
+  font-size: 1.9cqw;
   font-weight: 600;
+  line-height: 1.28;
 }
+
 .opportunity-line + .opportunity-line {
-  border-top: 1px solid #4e7b97;
-  padding-top: 6%;
+  border-top: 1px solid #4c738f;
+  padding-top: 5%;
 }
+
 .bottom-objective {
-  margin-top: 3%;
-  font-size: clamp(12px,1.38vw,24px);
+  flex-shrink: 0;
+  margin-top: 2.5%;
+  font-size: 1.27cqw;
+  line-height: 1.3;
   font-style: italic;
 }
 
-/* Slide 3 */
+/* SLIDE 3 */
+
 .workflow {
-  margin-top: 4%;
   display: grid;
-  grid-template-columns: repeat(6,minmax(0,1fr));
-  gap: 1.2%;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.4%;
+  margin-top: 4%;
   height: 48%;
+  flex-shrink: 0;
 }
+
 .step {
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
-  justify-content: flex-start;
-  gap: 4%;
-  padding: 7% 5%;
-  min-width: 0;
+  text-align: center;
+  gap: 5%;
+  padding: 9% 5%;
   position: relative;
 }
+
+.step .icon {
+  font-size: 3cqw;
+}
+
 .step h3 {
-  font-size: clamp(12px,1.45vw,26px);
-  line-height: 1.2;
+  font-size: 1.45cqw;
+  line-height: 1.18;
 }
+
 .step p {
-  font-size: clamp(10px,1.13vw,20px);
+  font-size: 1.08cqw;
+  line-height: 1.3;
 }
+
 .step:not(:last-child)::after {
   content: "›";
   position: absolute;
   right: -13%;
-  top: 39%;
+  top: 35%;
+  font-size: 3cqw;
   color: var(--cyan);
-  font-size: clamp(20px,3vw,53px);
   z-index: 5;
 }
-.step .icon {
-  font-size: clamp(24px,3.1vw,56px);
-}
+
 .loop {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1%;
-  margin-left: 17%;
-  width: 77%;
-  padding: 1.2% 2%;
-  border-bottom: 5px solid var(--cyan);
-  border-left: 5px solid var(--cyan);
-  border-right: 5px solid var(--purple);
-  border-radius: 0 0 35px 35px;
-  font-size: clamp(12px,1.5vw,26px);
+  width: 78%;
+  margin: 2% auto 0;
+  padding: 1.2%;
+  text-align: center;
+  border-left: .4cqw solid var(--cyan);
+  border-right: .4cqw solid var(--purple);
+  border-bottom: .4cqw solid var(--cyan);
+  border-radius: 0 0 2.2cqw 2.2cqw;
+  font-size: 1.45cqw;
   font-style: italic;
 }
+
 .workflow-note {
   margin-top: auto;
-  font-size: clamp(11px,1.35vw,24px);
-  color: #d4e3f4;
+  font-size: 1.28cqw;
+  color: #d5e3f1;
 }
 
-/* Slide 4 */
+/* SLIDE 4 */
+
 .values {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 4%;
-  margin-top: 4%;
   flex: 1;
   min-height: 0;
+  margin-top: 4%;
   padding-bottom: 3%;
 }
+
 .value {
   display: flex;
-  gap: 6%;
   align-items: center;
+  gap: 6%;
   padding: 5%;
 }
-.value .icon { min-width: 19%; }
-.value h3 {
-  margin-bottom: 3%;
-  font-size: clamp(17px,2vw,36px);
+
+.value .icon {
+  min-width: 18%;
+  text-align: center;
 }
 
-/* Slide 5 */
+.value h3 {
+  font-size: 1.92cqw;
+  margin-bottom: 3%;
+}
+
+/* SLIDE 5 */
+
 .timeline {
   display: grid;
-  grid-template-columns: repeat(4,minmax(0,1fr));
-  gap: 1.2%;
-  margin-top: 6%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5%;
+  margin-top: 5%;
+  height: 47%;
+  flex-shrink: 0;
 }
+
 .week {
-  min-height: 245px;
-  border-radius: 18px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: 0 0 7%;
   gap: 7%;
-  padding-bottom: 10%;
+  overflow: hidden;
 }
+
 .week-label {
   width: 100%;
   padding: 6%;
-  font-weight: bold;
-  font-size: clamp(17px,2.1vw,38px);
-  background: rgba(3,176,190,.5);
+  font-size: 2.1cqw;
+  font-weight: 700;
+  background: rgba(0,176,190,.48);
 }
-.week:nth-child(2) .week-label { background: rgba(25,131,240,.48); }
-.week:nth-child(3) .week-label { background: rgba(164,106,255,.45); }
-.week:nth-child(4) .week-label { background: rgba(241,59,106,.42); }
+
+.week:nth-child(2) .week-label {
+  background: rgba(39,138,246,.48);
+}
+
+.week:nth-child(3) .week-label {
+  background: rgba(166,113,251,.44);
+}
+
+.week:nth-child(4) .week-label {
+  background: rgba(240,68,114,.42);
+}
+
+.week .icon {
+  font-size: 3.4cqw;
+}
+
 .week h3 {
+  font-size: 1.7cqw;
   padding: 0 4%;
-  font-size: clamp(13px,1.85vw,33px);
-  line-height: 1.25;
+  line-height: 1.22;
 }
+
 .requirements {
   margin-top: 4%;
   display: flex;
   align-items: center;
-  gap: 5%;
+  gap: 4%;
   padding: 2.4% 3%;
-  width: 85%;
-}
-.requirements strong {
-  font-size: clamp(16px,2vw,35px);
-}
-.requirements span {
-  font-size: clamp(12px,1.35vw,24px);
-}
-.roadmap-note {
-  margin-top: auto;
-  color: #dce8f8;
-  font-size: clamp(11px,1.1vw,20px);
-  font-style: italic;
+  width: 100%;
 }
 
-/* Slide 6 */
-.budget-layout {
-  display: grid;
-  grid-template-columns: 1.24fr .94fr;
-  gap: 2.2%;
-  margin-top: 3%;
-  flex: 1;
-  min-height: 0;
-}
-.budget-panel,
-.approval-panel {
-  padding: 3%;
-  min-height: 0;
-}
-.budget-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3%;
-  margin-bottom: 3%;
-}
-.budget-header h3 {
-  font-size: clamp(16px,1.9vw,34px);
-}
-.amount {
-  background: var(--cyan);
-  color: #041321;
-  border-radius: 14px;
-  font-size: clamp(18px,2.45vw,44px);
-  font-weight: 800;
-  padding: 2% 4%;
-  white-space: nowrap;
-}
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: clamp(10px,1.31vw,23px);
-}
-th,td {
-  border: 1px solid #57768d;
-  padding: 1.65% 3%;
-  text-align: left;
-}
-th { background: rgba(79,137,171,.3); }
-td:last-child,th:last-child { text-align: right; white-space: nowrap; }
-.total td {
-  background: var(--cyan);
-  color: #051a29;
-  font-weight: 800;
-  font-size: 1.18em;
-}
-.approval-panel h3 {
-  padding-bottom: 5%;
-  border-bottom: 1px solid #49768e;
-}
-.approval-item {
-  display: flex;
-  gap: 5%;
-  margin-top: 9%;
-  align-items: center;
-  font-size: clamp(15px,1.75vw,31px);
-  line-height: 1.25;
-}
-.check {
-  color: var(--cyan);
-  font-size: 1.45em;
+.requirements strong {
+  font-size: 1.75cqw;
   flex-shrink: 0;
 }
-.budget-footnote {
-  margin-top: 2%;
-  font-size: clamp(10px,1.12vw,20px);
-  font-style: italic;
-  color: #dce8f8;
+
+.requirements span {
+  font-size: 1.35cqw;
 }
 
-/* Navigation */
+.roadmap-note {
+  margin-top: auto;
+  font-size: 1.16cqw;
+  font-style: italic;
+  color: #dce7f6;
+}
+
+/* SLIDE 6 */
+
+.budget-layout {
+  display: grid;
+  grid-template-columns: 1.22fr .95fr;
+  gap: 2.5%;
+  flex: 1;
+  min-height: 0;
+  margin-top: 3%;
+  padding-bottom: 1%;
+}
+
+.budget-panel,
+.approval-panel {
+  padding: 3.5%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3%;
+  margin-bottom: 4%;
+}
+
+.budget-header h3 {
+  font-size: 1.75cqw;
+}
+
+.amount {
+  padding: 2.2% 3.5%;
+  border-radius: .9cqw;
+  background: var(--cyan);
+  color: #061526;
+  font-weight: 800;
+  font-size: 2.1cqw;
+  white-space: nowrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 1.31cqw;
+}
+
+th, td {
+  border: 1px solid #58778b;
+  padding: 2.1% 3%;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+th {
+  background: rgba(75,139,174,.25);
+}
+
+th:first-child,
+td:first-child {
+  width: 72%;
+}
+
+th:last-child,
+td:last-child {
+  width: 28%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.total td {
+  background: var(--cyan);
+  color: #061526;
+  font-weight: 800;
+  font-size: 1.12em;
+}
+
+.approval-panel h3 {
+  font-size: 1.85cqw;
+  padding-bottom: 5%;
+  border-bottom: 1px solid #577a91;
+}
+
+.approval-item {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  margin-top: 9%;
+  font-size: 1.65cqw;
+  line-height: 1.25;
+}
+
+.check {
+  color: var(--cyan);
+  font-size: 2.3cqw;
+  flex-shrink: 0;
+}
+
+/* IMAGE HANDLING */
+
+/*
+  If slide images are added later, use:
+  <img class="slide-image" src="slide.png" alt="Slide">
+
+  The full image remains visible without cropping.
+*/
+
+.slide-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* CONTROLS */
+
 .controls {
   position: fixed;
-  z-index: 100;
-  bottom: 15px;
+  bottom: 16px;
   right: 18px;
+  z-index: 100;
   display: flex;
-  gap: 8px;
   align-items: center;
-  background: rgba(8,15,30,.94);
-  border: 1px solid #334c62;
-  padding: 8px;
+  gap: 8px;
+  padding: 9px;
+  background: rgba(5,13,25,.95);
+  border: 1px solid #3a5d73;
   border-radius: 12px;
 }
+
 button {
-  border: 1px solid #3e7c9a;
-  background: #112e46;
-  color: #fff;
-  padding: 9px 13px;
+  background: #12354d;
+  color: white;
+  border: 1px solid #3a829f;
   border-radius: 7px;
-  cursor: pointer;
+  padding: 9px 13px;
   font-size: 14px;
+  cursor: pointer;
 }
-button:hover { background: #176284; }
+
+button:hover {
+  background: #1a688b;
+}
+
 #counter {
+  min-width: 45px;
   font-size: 13px;
-  min-width: 46px;
   text-align: center;
 }
+
+/* PRINT ALL 6 SLIDES */
+
 @media print {
-  @page { size: 16in 9in; margin: 0; }
-  html,body {
+  @page {
+    size: 16in 9in;
+    margin: 0;
+  }
+
+  html, body {
     display: block;
     width: 16in;
     height: auto;
-    background: #111629;
+    margin: 0;
+    background: var(--navy);
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
+
   .presentation {
     width: 16in;
     height: auto;
     aspect-ratio: auto;
     overflow: visible;
+    container-type: inline-size;
   }
+
   .slide {
-    display: flex !important;
     position: relative !important;
+    display: flex !important;
     width: 16in;
     height: 9in;
     page-break-after: always;
@@ -544,301 +756,590 @@ button:hover { background: #176284; }
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
-  .controls { display: none !important; }
+
+  .controls {
+    display: none !important;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <main class="presentation" id="presentation">
 
-<!-- SLIDE 1 -->
+<!-- =========================== -->
+<!-- SLIDE 1 — COVER -->
+<!-- =========================== -->
+
 <section class="slide active">
+
   <div class="brand">
-    <img src="code-logo.png" alt="CODE logo"
+    <img
+      src="code-logo.png"
+      alt="CODE Logo"
       onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-    <span class="brand-fallback" style="display:none">CODE</span>
+    <span class="brand-fallback">CODE</span>
   </div>
-  <div class="accent"><span></span><span></span><span></span></div>
+
+  <div class="accent">
+    <span></span><span></span><span></span>
+  </div>
+
   <h1 class="cover-title">CODE Tender AI</h1>
+
   <div class="cover-subtitle">Executive Proposal</div>
-  <div class="cover-line">Project Vision &amp; Management Approval</div>
+
+  <div class="cover-line">
+    Project Vision &amp; Management Approval
+  </div>
+
   <p class="tagline">
-    An AI-powered approach to smarter tender evaluation
-    and proposal readiness.
+    An AI-powered approach to smarter tender
+    evaluation and proposal readiness.
   </p>
+
   <div class="cover-bottom">
     <div>For CEO &amp; Executive Leadership</div>
     <div>Prepared by: AI Engineer Abdulrahman</div>
   </div>
+
 </section>
 
-<!-- SLIDE 2 -->
+<!-- =========================== -->
+<!-- SLIDE 2 — BUSINESS PROBLEM -->
+<!-- =========================== -->
+
 <section class="slide">
-  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
-  <div class="accent"><span></span><span></span><span></span></div>
+
+  <div class="brand">
+    <img src="code-logo.png" alt="CODE Logo">
+  </div>
+
+  <div class="accent">
+    <span></span><span></span><span></span>
+  </div>
+
   <h2>The Business Challenge &amp; Opportunity</h2>
-  <div class="subtitle">Why CODE Needs This Initiative</div>
+
+  <div class="subtitle">
+    Why CODE Needs This Initiative
+  </div>
 
   <div class="challenge-layout">
-    <div>
+
+    <div class="challenge-column">
+
       <h3 class="section-label">Current Challenges</h3>
       <div class="rule"></div>
+
       <div class="challenge-list">
+
         <div class="card challenge-item">
           <div class="icon">▤</div>
-          <p>Tender documents are lengthy, fragmented,
-          and spread across booklets and annexes.</p>
+          <p>
+            Tender documents are lengthy, fragmented,
+            and spread across booklets and annexes.
+          </p>
         </div>
+
         <div class="card challenge-item">
           <div class="icon">⌕</div>
-          <p>Key technical requirements can be missed
-          during manual review.</p>
+          <p>
+            Key technical requirements can be missed
+            during manual review.
+          </p>
         </div>
+
         <div class="card challenge-item">
           <div class="icon">◷</div>
-          <p>Proposal checks are repetitive
-          and time-consuming.</p>
+          <p>
+            Proposal checks are repetitive
+            and time-consuming.
+          </p>
         </div>
+
         <div class="card challenge-item">
           <div class="icon">▱</div>
-          <p>Previous tender knowledge is not
-          systematically reused.</p>
+          <p>
+            Previous tender knowledge is not
+            systematically reused.
+          </p>
         </div>
+
       </div>
     </div>
-    <div>
+
+    <div class="opportunity-column">
+
       <h3 class="section-label">Business Opportunity</h3>
       <div class="rule"></div>
+
       <div class="card teal opportunity">
+
         <div class="opportunity-line">
           <div class="icon">⚙</div>
           <div>Structure the tender review process.</div>
         </div>
+
         <div class="opportunity-line">
           <div class="icon">✓</div>
           <div>Detect technical gaps earlier.</div>
         </div>
+
         <div class="opportunity-line">
           <div class="icon">▱</div>
-          <div>Build reusable institutional knowledge
-          for future tenders.</div>
+          <div>
+            Build reusable institutional knowledge
+            for future tenders.
+          </div>
         </div>
+
       </div>
     </div>
+
   </div>
+
   <p class="bottom-objective">
-    <b>Objective:</b> Transform tender review into a structured,
+    <b>Objective:</b>
+    Transform tender review into a structured,
     reusable, decision-supporting workflow.
   </p>
+
 </section>
 
-<!-- SLIDE 3 -->
+<!-- =========================== -->
+<!-- SLIDE 3 — WORKFLOW -->
+<!-- =========================== -->
+
 <section class="slide">
-  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
-  <div class="accent"><span></span><span></span><span></span></div>
+
+  <div class="brand">
+    <img src="code-logo.png" alt="CODE Logo">
+  </div>
+
+  <div class="accent">
+    <span></span><span></span><span></span>
+  </div>
+
   <h2>End-to-End Business Workflow</h2>
+
   <div class="subtitle">
     From Tender Documents to Institutional Knowledge
   </div>
 
   <div class="workflow">
+
     <div class="card teal step">
       <div class="icon">☁</div>
       <h3>Tender<br>Upload</h3>
-      <p>Booklet, annexes and proposal files.</p>
+      <p>
+        Booklet, annexes
+        and proposal files.
+      </p>
     </div>
+
     <div class="card step">
       <div class="icon">⌕</div>
-      <h3>AI Requirements<br>Analysis</h3>
-      <p>Extract scope, deadlines and key conditions.</p>
+      <h3>
+        AI Requirements<br>
+        Analysis
+      </h3>
+      <p>
+        Extract scope, deadlines
+        and key conditions.
+      </p>
     </div>
+
     <div class="card violet step">
       <div class="icon">☏</div>
-      <h3>Gap Detection<br>+ AI Chat</h3>
-      <p>Discuss gaps, revise and recheck.</p>
+      <h3>
+        Gap Detection<br>
+        + AI Chat
+      </h3>
+      <p>
+        Discuss gaps,
+        revise and recheck.
+      </p>
     </div>
+
     <div class="card step">
       <div class="icon">✓</div>
-      <h3>Employee Approval<br>&amp; Submission</h3>
-      <p>Human review and tender submission.</p>
+      <h3>
+        Employee Approval<br>
+        &amp; Submission
+      </h3>
+      <p>
+        Human review and
+        tender submission.
+      </p>
     </div>
+
     <div class="card step">
       <div class="icon">☷</div>
-      <h3>Official Outcome<br>Feedback</h3>
-      <p>Record qualification, award or rejection.</p>
+      <h3>
+        Official Outcome<br>
+        Feedback
+      </h3>
+      <p>
+        Record qualification,
+        award or rejection.
+      </p>
     </div>
+
     <div class="card violet step">
       <div class="icon">▱</div>
-      <h3>Institutional<br>Knowledge Base</h3>
-      <p>Retain verified requirements and responses.</p>
+      <h3>
+        Institutional<br>
+        Knowledge Base
+      </h3>
+      <p>
+        Retain verified requirements
+        and responses.
+      </p>
     </div>
+
   </div>
 
   <div class="loop">
     ↶ &nbsp; Reusable insights for future tenders
   </div>
+
   <p class="workflow-note">
-    AI supports employees; final decisions remain with
-    authorized staff.
+    AI supports employees; final decisions remain
+    with authorized staff.
   </p>
+
 </section>
 
-<!-- SLIDE 4 -->
+<!-- =========================== -->
+<!-- SLIDE 4 — BUSINESS VALUE -->
+<!-- =========================== -->
+
 <section class="slide">
-  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
-  <div class="accent"><span></span><span></span><span></span></div>
+
+  <div class="brand">
+    <img src="code-logo.png" alt="CODE Logo">
+  </div>
+
+  <div class="accent">
+    <span></span><span></span><span></span>
+  </div>
+
   <h2>Business Value for CODE</h2>
+
   <div class="subtitle">
     Operational Benefits &amp; Long-Term Knowledge
   </div>
 
   <div class="values">
+
     <div class="card teal value">
+
       <div class="icon">◷</div>
+
       <div>
         <h3>Faster Tender Screening</h3>
-        <p>Accelerate early review of tender opportunities.</p>
+        <p>
+          Accelerate early review
+          of tender opportunities.
+        </p>
       </div>
+
     </div>
+
     <div class="card value">
+
       <div class="icon">⌕</div>
+
       <div>
         <h3>Early Identification of Proposal Gaps</h3>
-        <p>Highlight missing or unclear technical response areas.</p>
+        <p>
+          Highlight missing or unclear
+          technical response areas.
+        </p>
       </div>
+
     </div>
+
     <div class="card value">
+
       <div class="icon">▱</div>
+
       <div>
         <h3>Reduced Repetitive Review Work</h3>
-        <p>Support teams with a more structured review process.</p>
+        <p>
+          Support teams with a more
+          structured review process.
+        </p>
       </div>
+
     </div>
+
     <div class="card teal value">
+
       <div class="icon">⟳</div>
+
       <div>
         <h3>Reusable Institutional Tender Knowledge</h3>
-        <p>Retain verified insights from previous tenders
-        for future use.</p>
+        <p>
+          Retain verified insights from
+          previous tenders for future use.
+        </p>
       </div>
+
     </div>
+
   </div>
+
   <div class="footer">
-    Expected benefits will be validated during the MVP pilot.
+    Expected benefits will be validated
+    during the MVP pilot.
   </div>
+
 </section>
 
-<!-- SLIDE 5 -->
+<!-- =========================== -->
+<!-- SLIDE 5 — ROADMAP -->
+<!-- =========================== -->
+
 <section class="slide">
-  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
-  <div class="accent"><span></span><span></span><span></span></div>
+
+  <div class="brand">
+    <img src="code-logo.png" alt="CODE Logo">
+  </div>
+
+  <div class="accent">
+    <span></span><span></span><span></span>
+  </div>
+
   <h2>One-Month MVP Delivery Roadmap</h2>
-  <div class="subtitle">Four Weeks to a Controlled Pilot</div>
+
+  <div class="subtitle">
+    Four Weeks to a Controlled Pilot
+  </div>
 
   <div class="timeline">
+
     <div class="card teal week">
       <div class="week-label">Week 1</div>
       <div class="icon">▱</div>
-      <h3>Database &amp;<br>Document Management</h3>
+      <h3>
+        Database &amp;<br>
+        Document Management
+      </h3>
     </div>
+
     <div class="card week">
       <div class="week-label">Week 2</div>
       <div class="icon">✧</div>
-      <h3>AI Integration &amp;<br>Requirements Extraction</h3>
+      <h3>
+        AI Integration &amp;<br>
+        Requirements Extraction
+      </h3>
     </div>
+
     <div class="card violet week">
       <div class="week-label">Week 3</div>
       <div class="icon">☏</div>
-      <h3>Gap Detection,<br>Interactive Chat &amp;<br>Knowledge Retrieval</h3>
+      <h3>
+        Gap Detection,<br>
+        Interactive Chat &amp;<br>
+        Knowledge Retrieval
+      </h3>
     </div>
+
     <div class="card pink week">
       <div class="week-label">Week 4</div>
       <div class="icon">☑</div>
-      <h3>Testing, Validation &amp;<br>Executive Demo</h3>
+      <h3>
+        Testing, Validation &amp;<br>
+        Executive Demo
+      </h3>
     </div>
+
   </div>
 
   <div class="card teal requirements">
-    <strong>MVP Start<br>Requirements</strong>
-    <span>▣ &nbsp; Suitable development computer</span>
-    <span>▤ &nbsp; Approved test documents</span>
+
+    <strong>
+      MVP Start<br>
+      Requirements
+    </strong>
+
+    <span>
+      ▣ &nbsp; Suitable development computer
+    </span>
+
+    <span>
+      ▤ &nbsp; Approved test documents
+    </span>
+
   </div>
+
   <p class="roadmap-note">
-    Proposed pilot timeline; not a production deployment commitment.
+    Proposed pilot timeline;
+    not a production deployment commitment.
   </p>
+
 </section>
 
-<!-- SLIDE 6 -->
+<!-- =========================== -->
+<!-- SLIDE 6 — BUDGET -->
+<!-- =========================== -->
+
 <section class="slide">
-  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
-  <div class="accent"><span></span><span></span><span></span></div>
+
+  <div class="brand">
+    <img src="code-logo.png" alt="CODE Logo">
+  </div>
+
+  <div class="accent">
+    <span></span><span></span><span></span>
+  </div>
+
   <h2>MVP Budget &amp; Management Approval</h2>
-  <div class="subtitle">Investment Requirements &amp; Decision</div>
+
+  <div class="subtitle">
+    Investment Requirements &amp; Decision
+  </div>
 
   <div class="budget-layout">
+
     <div class="card teal budget-panel">
+
       <div class="budget-header">
-        <h3>Proposed Maximum<br>Budget — One Month</h3>
-        <div class="amount">SAR 1,000</div>
+
+        <h3>
+          Proposed Maximum<br>
+          Budget — One Month
+        </h3>
+
+        <div class="amount">
+          SAR 1,000
+        </div>
+
       </div>
+
       <table>
+
         <thead>
-          <tr><th>Budget Item</th><th>Amount</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Claude Code + Codex</td><td>SAR 200</td></tr>
-          <tr><td>Groq API</td><td>SAR 100</td></tr>
-          <tr><td>Vision / Document Processing</td><td>SAR 200</td></tr>
-          <tr><td>Embedding API Contingency</td><td>SAR 50</td></tr>
-          <tr><td>Optional Backup / Storage</td><td>SAR 100</td></tr>
-          <tr><td>Testing &amp; Contingency</td><td>SAR 350</td></tr>
-          <tr class="total">
-            <td>Total Ceiling</td><td>SAR 1,000</td>
+          <tr>
+            <th>Budget Item</th>
+            <th>Amount</th>
           </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Claude Code + Codex</td>
+            <td>SAR 200</td>
+          </tr>
+
+          <tr>
+            <td>Groq API</td>
+            <td>SAR 100</td>
+          </tr>
+
+          <tr>
+            <td>Vision / Document Processing</td>
+            <td>SAR 200</td>
+          </tr>
+
+          <tr>
+            <td>Embedding API Contingency</td>
+            <td>SAR 50</td>
+          </tr>
+
+          <tr>
+            <td>Optional Backup / Storage</td>
+            <td>SAR 100</td>
+          </tr>
+
+          <tr>
+            <td>Testing &amp; Contingency</td>
+            <td>SAR 350</td>
+          </tr>
+
+          <tr class="total">
+            <td>Total Ceiling</td>
+            <td>SAR 1,000</td>
+          </tr>
+
         </tbody>
+
       </table>
+
     </div>
+
     <div class="card approval-panel">
-      <h3>Management Approval Requested</h3>
+
+      <h3>
+        Management Approval Requested
+      </h3>
+
       <div class="approval-item">
         <span class="check">✓</span>
-        <span>Authorize the one-month MVP pilot</span>
+        <span>
+          Authorize the one-month MVP pilot
+        </span>
       </div>
+
       <div class="approval-item">
         <span class="check">✓</span>
-        <span>Approve budget up to SAR 1,000</span>
+        <span>
+          Approve budget up to SAR 1,000
+        </span>
       </div>
+
       <div class="approval-item">
         <span class="check">✓</span>
-        <span>Provide a suitable development computer</span>
+        <span>
+          Provide a suitable development computer
+        </span>
       </div>
+
     </div>
+
   </div>
-  <p class="budget-footnote">
-    Budget allocations are planning allowances.
-    Device purchase, salaries, and production deployment are excluded.
-  </p>
+
 </section>
 
 </main>
 
+<!-- NAVIGATION -->
+
 <div class="controls">
-  <button onclick="changeSlide(-1)">◀ Previous</button>
+
+  <button onclick="changeSlide(-1)">
+    ◀ Previous
+  </button>
+
   <span id="counter">1 / 6</span>
-  <button onclick="changeSlide(1)">Next ▶</button>
-  <button onclick="window.print()">Print / PDF</button>
+
+  <button onclick="changeSlide(1)">
+    Next ▶
+  </button>
+
+  <button onclick="window.print()">
+    Print / PDF
+  </button>
+
 </div>
 
 <script>
 const slides = document.querySelectorAll(".slide");
+
 let current = 0;
 
 function showSlide(index) {
   current = (index + slides.length) % slides.length;
+
   slides.forEach((slide, i) => {
     slide.classList.toggle("active", i === current);
   });
+
   document.getElementById("counter").textContent =
     `${current + 1} / ${slides.length}`;
 }
@@ -848,19 +1349,32 @@ function changeSlide(direction) {
 }
 
 document.addEventListener("keydown", event => {
-  if (event.key === "ArrowRight" ||
-      event.key === "PageDown" ||
-      event.key === " ") {
+
+  if (
+    event.key === "ArrowRight" ||
+    event.key === "PageDown" ||
+    event.key === " "
+  ) {
     event.preventDefault();
     changeSlide(1);
   }
-  if (event.key === "ArrowLeft" ||
-      event.key === "PageUp") {
+
+  if (
+    event.key === "ArrowLeft" ||
+    event.key === "PageUp"
+  ) {
     event.preventDefault();
     changeSlide(-1);
   }
-  if (event.key === "Home") showSlide(0);
-  if (event.key === "End") showSlide(slides.length - 1);
+
+  if (event.key === "Home") {
+    showSlide(0);
+  }
+
+  if (event.key === "End") {
+    showSlide(slides.length - 1);
+  }
+
 });
 
 showSlide(0);
