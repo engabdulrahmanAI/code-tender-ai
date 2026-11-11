@@ -1,1150 +1,869 @@
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#081727">
-  <title>CODE Tender AI | Executive Investment Proposal</title>
-
-  <style>
-    :root {
-      --navy: #081727;
-      --navy2: #112d43;
-      --panel: #10283d;
-      --teal: #67dfd3;
-      --violet: #ae92ff;
-      --white: #f8fcff;
-      --muted: #aec5d2;
-      --line: rgba(255,255,255,.14);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: #e8eff3;
-      color: var(--white);
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    .app {
-      width: min(1380px, 96vw);
-      margin: 20px auto;
-    }
-
-    .stage {
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 18px 60px rgba(7, 25, 43, .2);
-    }
-
-    .slide {
-      display: none;
-      flex-direction: column;
-      aspect-ratio: 16 / 9;
-      min-height: 610px;
-      padding: clamp(24px, 3vw, 48px);
-      background:
-        radial-gradient(
-          circle at 95% 0%,
-          rgba(72, 147, 155, .2),
-          transparent 38%
-        ),
-        linear-gradient(125deg, #12344b, #081727 76%);
-      overflow: auto;
-    }
-
-    .slide.active { display: flex; }
-
-    .header, .footer, .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .header {
-      margin-bottom: 25px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.7px;
-      color: #9ab7c5;
-    }
-
-    .brand {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--teal);
-      letter-spacing: 2px;
-    }
-
-    .eyebrow {
-      color: var(--teal);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    h1, h2, h3, p { margin-top: 0; }
-
-    h1 {
-      font-size: clamp(42px, 5vw, 77px);
-      line-height: 1.06;
-      letter-spacing: -2px;
-      margin-bottom: 22px;
-    }
-
-    h2 {
-      font-size: clamp(27px, 3vw, 43px);
-      line-height: 1.17;
-      letter-spacing: -1px;
-      margin-bottom: 13px;
-    }
-
-    h3 {
-      font-size: 17px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 15px;
-      line-height: 1.65;
-      color: var(--muted);
-    }
-
-    .accent { color: var(--teal); }
-    .purple { color: var(--violet); }
-
-    .subtitle {
-      font-size: 17px;
-      max-width: 800px;
-      margin-bottom: 20px;
-    }
-
-    .grid {
-      display: grid;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-    .card {
-      min-width: 0;
-      padding: 20px;
-      background: rgba(19, 52, 74, .78);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-    }
-
-    .card.teal { border-top: 3px solid var(--teal); }
-    .card.violet { border-top: 3px solid var(--violet); }
-
-    .card h3 { color: var(--white); }
-    .card p:last-child { margin-bottom: 0; }
-
-    .label {
-      font-size: 10px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: var(--teal);
-      margin-bottom: 10px;
-    }
-
-    .label.violet { color: var(--violet); }
-
-    .metric {
-      font-size: clamp(23px, 2.5vw, 38px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.2;
-      white-space: nowrap;
-      color: var(--teal);
-    }
-
-    .metric.purple { color: var(--violet); }
-
-    .micro {
-      font-size: 11px;
-      color: #9ab7c5;
-      line-height: 1.55;
-    }
-
-    .tag {
-      display: inline-flex;
-      padding: 7px 11px;
-      border-radius: 99px;
-      background: rgba(103,223,211,.1);
-      color: var(--teal);
-      font-size: 11px;
-      font-weight: 700;
-      width: fit-content;
-    }
-
-    .tag.violet {
-      background: rgba(174,146,255,.1);
-      color: var(--violet);
-    }
-
-    .flow {
-      display: flex;
-      align-items: stretch;
-      gap: 10px;
-      margin: 18px 0;
-    }
-
-    .flow .node {
-      flex: 1;
-      min-width: 0;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 19px 12px;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .flow .node strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 7px;
-    }
-
-    .flow .arrow {
-      color: var(--teal);
-      font-size: 25px;
-      align-self: center;
-      font-weight: bold;
-    }
-
-    .separate {
-      height: 1px;
-      background: var(--line);
-      margin: 16px 0;
-    }
-
-    .section-title {
-      font-size: 12px;
-      color: var(--teal);
-      letter-spacing: 1.2px;
-      font-weight: 800;
-      margin: 15px 0 10px;
-      text-transform: uppercase;
-    }
-
-    .list {
-      display: grid;
-      gap: 9px;
-      margin: 0;
-      padding-left: 18px;
-      color: #dae9f1;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .callout {
-      background: rgba(103, 223, 211, .09);
-      border-left: 3px solid var(--teal);
-      padding: 14px 18px;
-      border-radius: 9px;
-      color: #e4f4f7;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-top: 15px;
-    }
-
-    .callout.violet {
-      border-color: var(--violet);
-      background: rgba(174,146,255,.08);
-    }
-
-    .footer {
-      margin-top: auto;
-      padding-top: 18px;
-      color: #8da8b8;
-      font-size: 11px;
-    }
-
-    .price-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .price-box {
-      background: rgba(103,223,211,.07);
-      border: 1px solid rgba(103,223,211,.17);
-      border-radius: 12px;
-      text-align: center;
-      padding: 15px 10px;
-      min-width: 0;
-    }
-
-    .price-box small {
-      display: block;
-      color: #c3d9e2;
-      font-size: 11px;
-      line-height: 1.5;
-    }
-
-    .price-box strong {
-      display: block;
-      color: var(--teal);
-      font-size: clamp(20px, 2vw, 30px);
-      margin: 9px 0 5px;
-      white-space: nowrap;
-    }
-
-    .cost-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      margin-top: 12px;
-    }
-
-    .cost-table th,
-    .cost-table td {
-      padding: 10px 8px;
-      text-align: left;
-      border-bottom: 1px solid var(--line);
-      vertical-align: top;
-    }
-
-    .cost-table th {
-      color: var(--teal);
-      font-size: 11px;
-    }
-
-    .cost-table td {
-      color: #e0edf4;
-    }
-
-    .formula {
-      border-radius: 10px;
-      padding: 13px 16px;
-      background: #071a2a;
-      border: 1px solid var(--line);
-      color: #dff3f3;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .source {
-      color: #96aebe;
-      font-size: 10px;
-      margin-top: 10px;
-      line-height: 1.55;
-      overflow-wrap: anywhere;
-    }
-
-    .source a {
-      color: #83d9d6;
-    }
-
-    .navigation {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 4px;
-    }
-
-    .navigation button {
-      background: #116974;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 11px 25px;
-      font: 600 14px "Segoe UI", Arial, sans-serif;
-      cursor: pointer;
-    }
-
-    .navigation button:disabled {
-      opacity: .35;
-      cursor: default;
-    }
-
-    #slideCounter {
-      font-size: 13px;
-      font-weight: 700;
-      color: #536d7d;
-    }
-
-    .progress {
-      height: 5px;
-      background: #cfdee6;
-    }
-
-    #progressBar {
-      height: 100%;
-      width: 0;
-      background: #17a19b;
-      transition: width .2s ease;
-    }
-
-    @media (max-width: 850px) {
-      .slide {
-        aspect-ratio: auto;
-        min-height: 690px;
-        max-height: 85vh;
-        padding: 25px;
-      }
-
-      .two, .three, .four {
-        grid-template-columns: 1fr;
-      }
-
-      .flow { flex-wrap: wrap; }
-
-      .flow .node {
-        flex: 1 1 40%;
-      }
-
-      .flow .arrow { display: none; }
-
-      .price-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .card { padding: 14px; }
-
-      .cost-table { font-size: 11px; }
-    }
-
-    @media (max-width: 540px) {
-      .app { width: 98vw; margin: 5px auto; }
-      .slide { padding: 18px; min-height: 620px; }
-      .price-grid { grid-template-columns: 1fr; }
-      .metric { font-size: 25px; }
-    }
-
-    @media print {
-      body { background: white; }
-      .app { width: 100%; margin: 0; }
-
-      .stage {
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .navigation, .progress {
-        display: none !important;
-      }
-
-      .slide {
-        display: flex !important;
-        aspect-ratio: auto;
-        width: 100%;
-        height: 100vh;
-        min-height: 0;
-        max-height: none;
-        overflow: hidden;
-        break-after: page;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODE Tender AI — Executive Proposal</title>
+<style>
+:root {
+  --bg: #111629;
+  --bg2: #091e34;
+  --panel: rgba(13,35,59,.85);
+  --cyan: #12d8dc;
+  --blue: #1983f0;
+  --purple: #a46aff;
+  --red: #f13b6a;
+  --white: #f7f9ff;
+  --muted: #b2c1d4;
+  --line: rgba(84,193,234,.4);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: #070c19;
+  color: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.presentation {
+  position: relative;
+  width: min(100vw, 177.7778vh);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg);
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 3.6% 4.4%;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 88% 90%,
+      rgba(0,133,201,.34), transparent 45%),
+    linear-gradient(122deg,
+      #1d192e 0%, #11172c 54%, #092942 100%);
+}
+.slide.active { display: flex; }
+.slide::before {
+  content: "";
+  position: absolute;
+  width: 44%;
+  height: 135%;
+  top: -20%;
+  right: -25%;
+  transform: rotate(31deg);
+  background: linear-gradient(
+    110deg,
+    rgba(10,225,229,.43),
+    rgba(0,115,224,.17),
+    transparent
+  );
+  border-left: 2px solid rgba(0,229,238,.6);
+  pointer-events: none;
+}
+.slide::after {
+  content: "";
+  position: absolute;
+  width: 55%;
+  height: 30%;
+  right: -23%;
+  bottom: -20%;
+  transform: rotate(-32deg);
+  background: linear-gradient(100deg,transparent,var(--red));
+  opacity: .48;
+  pointer-events: none;
+}
+.slide > * {
+  position: relative;
+  z-index: 2;
+}
+.brand {
+  height: 8%;
+  display: flex;
+  align-items: center;
+}
+.brand img {
+  height: 100%;
+  max-width: 19%;
+  object-fit: contain;
+  object-position: left center;
+}
+.brand-fallback {
+  font-size: clamp(18px,2.3vw,42px);
+  font-weight: 500;
+  letter-spacing: .09em;
+}
+.accent {
+  display: flex;
+  gap: 6px;
+  margin: 2.5% 0 1.8%;
+}
+.accent span {
+  height: 5px;
+  width: 4%;
+  min-width: 28px;
+  border-radius: 8px;
+}
+.accent span:nth-child(1) { background: var(--cyan); }
+.accent span:nth-child(2) { background: var(--blue); }
+.accent span:nth-child(3) { background: var(--red); }
+h1,h2,h3,p { margin: 0; }
+h1 {
+  font-size: clamp(36px,5.0vw,86px);
+  line-height: 1.1;
+  letter-spacing: -.035em;
+}
+h2 {
+  font-size: clamp(24px,3.55vw,63px);
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+h3 {
+  font-size: clamp(17px,2vw,34px);
+}
+.subtitle {
+  color: #e0e8f9;
+  font-size: clamp(17px,2.45vw,42px);
+  margin-top: .5%;
+}
+.small {
+  color: var(--muted);
+  font-size: clamp(11px,1.18vw,22px);
+  line-height: 1.45;
+}
+.footer {
+  margin-top: auto;
+  font-size: clamp(11px,1.13vw,20px);
+  color: #c1d0e5;
+  font-style: italic;
+}
+.card {
+  background: linear-gradient(
+    135deg,
+    rgba(12,45,68,.95),
+    rgba(25,30,59,.88)
+  );
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 2%;
+}
+.card p {
+  font-size: clamp(13px,1.55vw,27px);
+  line-height: 1.36;
+  color: #e6ecf8;
+}
+.teal {
+  border-color: var(--cyan);
+  background: linear-gradient(
+    135deg,rgba(1,93,111,.52),rgba(14,30,59,.9)
+  );
+}
+.violet { border-color: var(--purple); }
+.pink { border-color: var(--red); }
+.icon {
+  font-size: clamp(26px,3.0vw,52px);
+  color: var(--cyan);
+  line-height: 1.1;
+}
+
+/* Slide 1 */
+.cover-title {
+  margin-top: 5%;
+  font-size: clamp(43px,5.8vw,104px);
+}
+.cover-subtitle {
+  font-size: clamp(29px,4vw,72px);
+  margin-top: .7%;
+  font-weight: 300;
+}
+.cover-line {
+  margin-top: 3%;
+  display: flex;
+  gap: 2%;
+  align-items: center;
+  font-size: clamp(18px,2.45vw,43px);
+}
+.cover-line::before {
+  content: "";
+  width: 6px;
+  align-self: stretch;
+  background: var(--cyan);
+  border-radius: 6px;
+}
+.tagline {
+  font-style: italic;
+  margin-top: 3%;
+  font-size: clamp(14px,1.8vw,32px);
+  color: #f1f4ff;
+}
+.cover-bottom {
+  margin-top: auto;
+  display: flex;
+  gap: 5%;
+  align-items: center;
+  font-size: clamp(11px,1.45vw,27px);
+}
+.cover-bottom div + div {
+  border-left: 2px solid #6b7890;
+  padding-left: 4%;
+}
+
+/* Slide 2 */
+.challenge-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.04fr;
+  gap: 5%;
+  margin-top: 3.5%;
+  flex: 1;
+  min-height: 0;
+}
+.section-label {
+  font-size: clamp(19px,2.1vw,39px);
+  margin-bottom: 3%;
+}
+.rule {
+  width: 14%;
+  height: 4px;
+  background: var(--cyan);
+  border-radius: 6px;
+  margin-bottom: 4%;
+}
+.challenge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+}
+.challenge-item {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  padding: 2.5% 4%;
+  flex: 1;
+}
+.challenge-item .icon { min-width: 12%; }
+.challenge-item p {
+  font-size: clamp(12px,1.48vw,26px);
+}
+.opportunity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 5%;
+  padding: 6%;
+  height: 75%;
+}
+.opportunity-line {
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  font-size: clamp(16px,2.0vw,35px);
+  font-weight: 600;
+}
+.opportunity-line + .opportunity-line {
+  border-top: 1px solid #4e7b97;
+  padding-top: 6%;
+}
+.bottom-objective {
+  margin-top: 3%;
+  font-size: clamp(12px,1.38vw,24px);
+  font-style: italic;
+}
+
+/* Slide 3 */
+.workflow {
+  margin-top: 4%;
+  display: grid;
+  grid-template-columns: repeat(6,minmax(0,1fr));
+  gap: 1.2%;
+  height: 48%;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4%;
+  padding: 7% 5%;
+  min-width: 0;
+  position: relative;
+}
+.step h3 {
+  font-size: clamp(12px,1.45vw,26px);
+  line-height: 1.2;
+}
+.step p {
+  font-size: clamp(10px,1.13vw,20px);
+}
+.step:not(:last-child)::after {
+  content: "›";
+  position: absolute;
+  right: -13%;
+  top: 39%;
+  color: var(--cyan);
+  font-size: clamp(20px,3vw,53px);
+  z-index: 5;
+}
+.step .icon {
+  font-size: clamp(24px,3.1vw,56px);
+}
+.loop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
+  margin-left: 17%;
+  width: 77%;
+  padding: 1.2% 2%;
+  border-bottom: 5px solid var(--cyan);
+  border-left: 5px solid var(--cyan);
+  border-right: 5px solid var(--purple);
+  border-radius: 0 0 35px 35px;
+  font-size: clamp(12px,1.5vw,26px);
+  font-style: italic;
+}
+.workflow-note {
+  margin-top: auto;
+  font-size: clamp(11px,1.35vw,24px);
+  color: #d4e3f4;
+}
+
+/* Slide 4 */
+.values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4%;
+  margin-top: 4%;
+  flex: 1;
+  min-height: 0;
+  padding-bottom: 3%;
+}
+.value {
+  display: flex;
+  gap: 6%;
+  align-items: center;
+  padding: 5%;
+}
+.value .icon { min-width: 19%; }
+.value h3 {
+  margin-bottom: 3%;
+  font-size: clamp(17px,2vw,36px);
+}
+
+/* Slide 5 */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 1.2%;
+  margin-top: 6%;
+}
+.week {
+  min-height: 245px;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 7%;
+  padding-bottom: 10%;
+}
+.week-label {
+  width: 100%;
+  padding: 6%;
+  font-weight: bold;
+  font-size: clamp(17px,2.1vw,38px);
+  background: rgba(3,176,190,.5);
+}
+.week:nth-child(2) .week-label { background: rgba(25,131,240,.48); }
+.week:nth-child(3) .week-label { background: rgba(164,106,255,.45); }
+.week:nth-child(4) .week-label { background: rgba(241,59,106,.42); }
+.week h3 {
+  padding: 0 4%;
+  font-size: clamp(13px,1.85vw,33px);
+  line-height: 1.25;
+}
+.requirements {
+  margin-top: 4%;
+  display: flex;
+  align-items: center;
+  gap: 5%;
+  padding: 2.4% 3%;
+  width: 85%;
+}
+.requirements strong {
+  font-size: clamp(16px,2vw,35px);
+}
+.requirements span {
+  font-size: clamp(12px,1.35vw,24px);
+}
+.roadmap-note {
+  margin-top: auto;
+  color: #dce8f8;
+  font-size: clamp(11px,1.1vw,20px);
+  font-style: italic;
+}
+
+/* Slide 6 */
+.budget-layout {
+  display: grid;
+  grid-template-columns: 1.24fr .94fr;
+  gap: 2.2%;
+  margin-top: 3%;
+  flex: 1;
+  min-height: 0;
+}
+.budget-panel,
+.approval-panel {
+  padding: 3%;
+  min-height: 0;
+}
+.budget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3%;
+  margin-bottom: 3%;
+}
+.budget-header h3 {
+  font-size: clamp(16px,1.9vw,34px);
+}
+.amount {
+  background: var(--cyan);
+  color: #041321;
+  border-radius: 14px;
+  font-size: clamp(18px,2.45vw,44px);
+  font-weight: 800;
+  padding: 2% 4%;
+  white-space: nowrap;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: clamp(10px,1.31vw,23px);
+}
+th,td {
+  border: 1px solid #57768d;
+  padding: 1.65% 3%;
+  text-align: left;
+}
+th { background: rgba(79,137,171,.3); }
+td:last-child,th:last-child { text-align: right; white-space: nowrap; }
+.total td {
+  background: var(--cyan);
+  color: #051a29;
+  font-weight: 800;
+  font-size: 1.18em;
+}
+.approval-panel h3 {
+  padding-bottom: 5%;
+  border-bottom: 1px solid #49768e;
+}
+.approval-item {
+  display: flex;
+  gap: 5%;
+  margin-top: 9%;
+  align-items: center;
+  font-size: clamp(15px,1.75vw,31px);
+  line-height: 1.25;
+}
+.check {
+  color: var(--cyan);
+  font-size: 1.45em;
+  flex-shrink: 0;
+}
+.budget-footnote {
+  margin-top: 2%;
+  font-size: clamp(10px,1.12vw,20px);
+  font-style: italic;
+  color: #dce8f8;
+}
+
+/* Navigation */
+.controls {
+  position: fixed;
+  z-index: 100;
+  bottom: 15px;
+  right: 18px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: rgba(8,15,30,.94);
+  border: 1px solid #334c62;
+  padding: 8px;
+  border-radius: 12px;
+}
+button {
+  border: 1px solid #3e7c9a;
+  background: #112e46;
+  color: #fff;
+  padding: 9px 13px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover { background: #176284; }
+#counter {
+  font-size: 13px;
+  min-width: 46px;
+  text-align: center;
+}
+@media print {
+  @page { size: 16in 9in; margin: 0; }
+  html,body {
+    display: block;
+    width: 16in;
+    height: auto;
+    background: #111629;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .presentation {
+    width: 16in;
+    height: auto;
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+  .slide {
+    display: flex !important;
+    position: relative !important;
+    width: 16in;
+    height: 9in;
+    page-break-after: always;
+    break-after: page;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .controls { display: none !important; }
+}
+</style>
 </head>
-
 <body>
 
-<div class="app">
-<main class="stage">
+<main class="presentation" id="presentation">
 
-  <!-- SLIDE 1 -->
-  <section class="slide active">
-    <div class="header">
-      <span class="brand">CODE</span>
-      <span>EXECUTIVE INVESTMENT PROPOSAL · 2026</span>
-    </div>
+<!-- SLIDE 1 -->
+<section class="slide active">
+  <div class="brand">
+    <img src="code-logo.png" alt="CODE logo"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="brand-fallback" style="display:none">CODE</span>
+  </div>
+  <div class="accent"><span></span><span></span><span></span></div>
+  <h1 class="cover-title">CODE Tender AI</h1>
+  <div class="cover-subtitle">Executive Proposal</div>
+  <div class="cover-line">Project Vision &amp; Management Approval</div>
+  <p class="tagline">
+    An AI-powered approach to smarter tender evaluation
+    and proposal readiness.
+  </p>
+  <div class="cover-bottom">
+    <div>For CEO &amp; Executive Leadership</div>
+    <div>Prepared by: AI Engineer Abdulrahman</div>
+  </div>
+</section>
 
-    <div style="margin:auto 0;">
-      <div class="eyebrow">CODE TENDER AI</div>
+<!-- SLIDE 2 -->
+<section class="slide">
+  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
+  <div class="accent"><span></span><span></span><span></span></div>
+  <h2>The Business Challenge &amp; Opportunity</h2>
+  <div class="subtitle">Why CODE Needs This Initiative</div>
 
-      <h1>
-        TWO TRACKS.<br>
-        <span class="accent">ONE COMMERCIAL GOAL.</span>
-      </h1>
-
-      <p class="subtitle">
-        Evaluate more Saudi tenders, faster.
-        Improve bid preparation and make
-        better-informed participation decisions.
-      </p>
-
-      <div class="flow">
-        <div class="node">
-          <strong>Tender Documents</strong>
-          <span class="micro">
-            Specifications, annexes, contracts
-          </span>
+  <div class="challenge-layout">
+    <div>
+      <h3 class="section-label">Current Challenges</h3>
+      <div class="rule"></div>
+      <div class="challenge-list">
+        <div class="card challenge-item">
+          <div class="icon">▤</div>
+          <p>Tender documents are lengthy, fragmented,
+          and spread across booklets and annexes.</p>
         </div>
-
-        <span class="arrow">→</span>
-
-        <div class="node">
-          <strong>Faster Evaluation</strong>
-          <span class="micro">
-            Structured information and evidence
-          </span>
+        <div class="card challenge-item">
+          <div class="icon">⌕</div>
+          <p>Key technical requirements can be missed
+          during manual review.</p>
         </div>
-
-        <span class="arrow">→</span>
-
-        <div class="node">
-          <strong>Better Bid Readiness</strong>
-          <span class="micro">
-            Stronger preparation and decisions
-          </span>
+        <div class="card challenge-item">
+          <div class="icon">◷</div>
+          <p>Proposal checks are repetitive
+          and time-consuming.</p>
         </div>
-      </div>
-
-      <div class="grid two">
-        <div class="card teal">
-          <div class="label">TRACK 01</div>
-          <h3>AI Tender Summarizer</h3>
-          <p>Low-complexity summarization via OpenAI API.</p>
-        </div>
-
-        <div class="card violet">
-          <div class="label violet">TRACK 02</div>
-          <h3>Private Tender Analyzer</h3>
-          <p>Advanced analysis using dedicated AI infrastructure.</p>
-        </div>
-      </div>
-
-      <div class="callout">
-        Business ambition: increase tender evaluation
-        capacity and strengthen bid competitiveness.
-        Higher win rates are a goal, not a guaranteed result.
-      </div>
-    </div>
-
-    <div class="footer">
-      <span>Prepared by AI Engineer Abdulrahman</span>
-      <span>01 / 06</span>
-    </div>
-  </section>
-
-
-  <!-- SLIDE 2 -->
-  <section class="slide">
-    <div class="header">
-      <span class="brand">CODE</span>
-      <span>TRACK 01 / SUMMARIZATION</span>
-    </div>
-
-    <h2>
-      AI Tender <span class="accent">Summarizer</span>
-    </h2>
-
-    <p class="subtitle">
-      An open-source application using a proprietary
-      OpenAI API model for fast, structured tender summaries.
-    </p>
-
-    <div class="grid two">
-      <div class="card teal">
-        <div class="label">HOW IT WORKS</div>
-
-        <div class="flow" style="margin:10px 0;">
-          <div class="node">
-            <strong>Upload</strong>
-            <span class="micro">Tender files</span>
-          </div>
-          <span class="arrow">→</span>
-          <div class="node">
-            <strong>Parse</strong>
-            <span class="micro">OCR if needed</span>
-          </div>
-          <span class="arrow">→</span>
-          <div class="node">
-            <strong>Summarize</strong>
-            <span class="micro">OpenAI API</span>
-          </div>
-        </div>
-
-        <div class="section-title">Expected Output</div>
-        <ul class="list">
-          <li>Scope and major requirements</li>
-          <li>Qualification and evaluation criteria</li>
-          <li>Deadlines and contractual conditions</li>
-          <li>Source-linked structured summary</li>
-        </ul>
-
-        <div class="section-title">Required Resources</div>
-        <ul class="list">
-          <li>OpenAI API key and usage credits</li>
-          <li>Document parsing and optional OCR</li>
-          <li>Basic hosting, storage and access controls</li>
-        </ul>
-      </div>
-
-      <div class="card teal">
-        <div class="label">ILLUSTRATIVE MONTHLY DIRECT COST</div>
-
-        <p class="micro">
-          Assumptions: 60 tenders/month,
-          150 pages each. Three model passes per tender,
-          each using 200k input and 20k output tokens.
-        </p>
-
-        <div class="price-grid">
-          <div class="price-box">
-            <small>Text API</small>
-            <strong>SAR 162</strong>
-            <small>per month</small>
-          </div>
-
-          <div class="price-box">
-            <small>OCR</small>
-            <strong>SAR 51</strong>
-            <small>per month</small>
-          </div>
-
-          <div class="price-box">
-            <small>Combined</small>
-            <strong>SAR 213</strong>
-            <small>per month</small>
-          </div>
-        </div>
-
-        <div class="callout">
-          <strong>Not total operating cost.</strong>
-          Hosting, storage, layout processing,
-          security, engineering, taxes and QA are excluded.
-        </div>
-
-        <div class="source">
-          Planning rates to reverify before approval:
-          GPT-5.4 mini $0.75/M input,
-          $4.50/M output;
-          basic OCR $1.50/1,000 pages;
-          1 USD = SAR 3.75.
-          <br>
-          <a href="https://developers.openai.com/api/docs/models/gpt-5.4-mini" target="_blank">OpenAI Model Pricing</a>
-          ·
-          <a href="https://cloud.google.com/document-ai/pricing" target="_blank">Google Document AI Pricing</a>
+        <div class="card challenge-item">
+          <div class="icon">▱</div>
+          <p>Previous tender knowledge is not
+          systematically reused.</p>
         </div>
       </div>
     </div>
-
-    <div class="footer">
-      <span>
-        Open-source application ≠ Open-source AI model
-      </span>
-      <span>02 / 06</span>
-    </div>
-  </section>
-
-
-  <!-- SLIDE 3 -->
-  <section class="slide">
-    <div class="header">
-      <span class="brand">CODE</span>
-      <span>TRACK 02 / PRIVATE ANALYSIS</span>
-    </div>
-
-    <h2>
-      Private Tender <span class="purple">Analyzer</span>
-    </h2>
-
-    <p class="subtitle">
-      Advanced AI-assisted tender analysis
-      operating on dedicated, privately managed
-      infrastructure.
-    </p>
-
-    <div class="flow">
-      <div class="node">
-        <strong>Documents</strong>
-        <span class="micro">
-          PDFs, spreadsheets and annexes
-        </span>
-      </div>
-      <span class="arrow">→</span>
-      <div class="node">
-        <strong>Document AI</strong>
-        <span class="micro">
-          Arabic OCR, tables and layout
-        </span>
-      </div>
-      <span class="arrow">→</span>
-      <div class="node">
-        <strong>Local AI</strong>
-        <span class="micro">
-          Open-weight LLM, retrieval
-        </span>
-      </div>
-      <span class="arrow">→</span>
-      <div class="node">
-        <strong>Verification</strong>
-        <span class="micro">
-          Evidence, rules and review
-        </span>
-      </div>
-    </div>
-
-    <div class="grid two">
-      <div class="card violet">
-        <div class="label violet">BUSINESS DELIVERABLES</div>
-        <ul class="list">
-          <li>Detailed technical and contractual requirements</li>
-          <li>Qualification criteria and compliance risks</li>
-          <li>Conflicts, omissions and clarification questions</li>
-          <li>Technical execution considerations</li>
-          <li>Bid-readiness decision support</li>
-        </ul>
-      </div>
-
-      <div class="card violet">
-        <div class="label violet">ENGINEERING CHALLENGES</div>
-        <ul class="list">
-          <li>Arabic OCR and complex table accuracy</li>
-          <li>Mandatory requirement coverage</li>
-          <li>Source traceability and numerical validation</li>
-          <li>Inference speed and model memory requirements</li>
-          <li>Security, reliability and maintenance</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="callout violet">
-      <strong>Deployment policy:</strong>
-      Existing company workstations are not an
-      approved production option. Evaluate a dedicated
-      on-premises AI server or a suitable cloud GPU service.
-    </div>
-
-    <div class="footer">
-      <span>Model quality and infrastructure fit must be tested</span>
-      <span>03 / 06</span>
-    </div>
-  </section>
-
-
-  <!-- SLIDE 4 -->
-  <section class="slide">
-    <div class="header">
-      <span class="brand">CODE</span>
-      <span>INFRASTRUCTURE / COST COMPARISON</span>
-    </div>
-
-    <h2>
-      Infrastructure & <span class="accent">Cost</span>
-    </h2>
-
-    <div class="grid two">
-      <div class="card teal">
-        <div class="label">OPTION A / ON-PREMISES</div>
-        <h3>Dedicated AI Server</h3>
-
-        <div class="metric">QUOTE REQUIRED</div>
-        <p class="micro">Upfront equipment investment</p>
-
-        <div class="separate"></div>
-
-        <ul class="list">
-          <li>GPU server, CPU, RAM and storage</li>
-          <li>Electricity and cooling</li>
-          <li>Support and maintenance</li>
-          <li>Backup, security and hardware upgrades</li>
-        </ul>
-
-        <div class="section-title">3-Year TCO</div>
-        <div class="formula">
-          Acquisition + 36 × Monthly Operating Costs
-          + Engineering & Support
+    <div>
+      <h3 class="section-label">Business Opportunity</h3>
+      <div class="rule"></div>
+      <div class="card teal opportunity">
+        <div class="opportunity-line">
+          <div class="icon">⚙</div>
+          <div>Structure the tender review process.</div>
         </div>
-      </div>
-
-      <div class="card violet">
-        <div class="label violet">OPTION B / CLOUD GPU</div>
-        <h3>Illustrative GPU Rental</h3>
-
-        <table class="cost-table">
-          <thead>
-            <tr>
-              <th>GPU</th>
-              <th>Hourly</th>
-              <th>176h/mo</th>
-              <th>36mo*</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>L40S 48GB</td>
-              <td>$1.09</td>
-              <td>SAR 719</td>
-              <td>SAR 25,898</td>
-            </tr>
-            <tr>
-              <td>A100 80GB</td>
-              <td>$1.79</td>
-              <td>SAR 1,181</td>
-              <td>SAR 42,530</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p class="micro">
-          *GPU rental component only, assuming
-          176 billable GPU hours each month.
-        </p>
-
-        <div class="section-title">
-          Always-On Comparison — 720h/month
+        <div class="opportunity-line">
+          <div class="icon">✓</div>
+          <div>Detect technical gaps earlier.</div>
         </div>
-        <div class="grid two">
-          <div class="price-box">
-            <small>L40S</small>
-            <strong>SAR 2,943</strong>
-            <small>GPU / month</small>
-          </div>
-          <div class="price-box">
-            <small>A100</small>
-            <strong>SAR 4,833</strong>
-            <small>GPU / month</small>
-          </div>
+        <div class="opportunity-line">
+          <div class="icon">▱</div>
+          <div>Build reusable institutional knowledge
+          for future tenders.</div>
         </div>
       </div>
     </div>
+  </div>
+  <p class="bottom-objective">
+    <b>Objective:</b> Transform tender review into a structured,
+    reusable, decision-supporting workflow.
+  </p>
+</section>
 
-    <div class="callout">
-      <strong>Important:</strong>
-      GPU rental is not full TCO. Cloud storage,
-      networking, security, operations, taxes and
-      model suitability remain to be evaluated.
-      Saudi data residency must also be verified.
+<!-- SLIDE 3 -->
+<section class="slide">
+  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
+  <div class="accent"><span></span><span></span><span></span></div>
+  <h2>End-to-End Business Workflow</h2>
+  <div class="subtitle">
+    From Tender Documents to Institutional Knowledge
+  </div>
+
+  <div class="workflow">
+    <div class="card teal step">
+      <div class="icon">☁</div>
+      <h3>Tender<br>Upload</h3>
+      <p>Booklet, annexes and proposal files.</p>
     </div>
-
-    <div class="source">
-      Illustrative rates: Runpod GPU rental references.
-      Recheck live pricing, region and availability before procurement.
-      <a href="https://www.runpod.io/pricing" target="_blank">
-        Runpod Pricing
-      </a>
+    <div class="card step">
+      <div class="icon">⌕</div>
+      <h3>AI Requirements<br>Analysis</h3>
+      <p>Extract scope, deadlines and key conditions.</p>
     </div>
-
-    <div class="footer">
-      <span>Do not purchase infrastructure before benchmarking</span>
-      <span>04 / 06</span>
+    <div class="card violet step">
+      <div class="icon">☏</div>
+      <h3>Gap Detection<br>+ AI Chat</h3>
+      <p>Discuss gaps, revise and recheck.</p>
     </div>
-  </section>
-
-
-  <!-- SLIDE 5 -->
-  <section class="slide">
-    <div class="header">
-      <span class="brand">CODE</span>
-      <span>FINANCIAL FEASIBILITY</span>
+    <div class="card step">
+      <div class="icon">✓</div>
+      <h3>Employee Approval<br>&amp; Submission</h3>
+      <p>Human review and tender submission.</p>
     </div>
+    <div class="card step">
+      <div class="icon">☷</div>
+      <h3>Official Outcome<br>Feedback</h3>
+      <p>Record qualification, award or rejection.</p>
+    </div>
+    <div class="card violet step">
+      <div class="icon">▱</div>
+      <h3>Institutional<br>Knowledge Base</h3>
+      <p>Retain verified requirements and responses.</p>
+    </div>
+  </div>
 
-    <h2>
-      Financial Feasibility <span class="accent">& ROI</span>
-    </h2>
+  <div class="loop">
+    ↶ &nbsp; Reusable insights for future tenders
+  </div>
+  <p class="workflow-note">
+    AI supports employees; final decisions remain with
+    authorized staff.
+  </p>
+</section>
 
-    <p class="micro">
-      GPU compute examples only — L40S at
-      $1.09/hour and SAR 3.75 per USD.
-      These are not full costs per tender.
-    </p>
+<!-- SLIDE 4 -->
+<section class="slide">
+  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
+  <div class="accent"><span></span><span></span><span></span></div>
+  <h2>Business Value for CODE</h2>
+  <div class="subtitle">
+    Operational Benefits &amp; Long-Term Knowledge
+  </div>
 
-    <div class="grid two">
-      <div class="card teal">
-        <div class="label">FIXED 176 GPU HOURS / MONTH</div>
-        <h3>GPU Compute Cost Per Tender</h3>
-
-        <div class="price-grid">
-          <div class="price-box">
-            <small>30 tenders</small>
-            <strong>SAR 24</strong>
-            <small>per tender</small>
-          </div>
-
-          <div class="price-box">
-            <small>60 tenders</small>
-            <strong>SAR 12</strong>
-            <small>per tender</small>
-          </div>
-
-          <div class="price-box">
-            <small>120 tenders</small>
-            <strong>SAR 6</strong>
-            <small>per tender</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="card violet">
-        <div class="label violet">FIXED 60 TENDERS / MONTH</div>
-        <h3>GPU Rental by Operating Hours</h3>
-
-        <div class="price-grid">
-          <div class="price-box">
-            <small>88 hours</small>
-            <strong>SAR 360</strong>
-            <small>per month</small>
-          </div>
-
-          <div class="price-box">
-            <small>176 hours</small>
-            <strong>SAR 719</strong>
-            <small>per month</small>
-          </div>
-
-          <div class="price-box">
-            <small>352 hours</small>
-            <strong>SAR 1,439</strong>
-            <small>per month</small>
-          </div>
-        </div>
+  <div class="values">
+    <div class="card teal value">
+      <div class="icon">◷</div>
+      <div>
+        <h3>Faster Tender Screening</h3>
+        <p>Accelerate early review of tender opportunities.</p>
       </div>
     </div>
-
-    <div class="section-title">MEASURABLE BUSINESS VALUE</div>
-
-    <div class="grid four">
-      <div class="card">
-        <h3>Time Saved</h3>
-        <p>Analyst hours saved per tender.</p>
-      </div>
-
-      <div class="card">
-        <h3>Coverage</h3>
-        <p>Human-verified mandatory requirements.</p>
-      </div>
-
-      <div class="card">
-        <h3>Reduced Rework</h3>
-        <p>Fewer avoidable omissions and revisions.</p>
-      </div>
-
-      <div class="card">
-        <h3>Bid Capacity</h3>
-        <p>More opportunities evaluated each month.</p>
+    <div class="card value">
+      <div class="icon">⌕</div>
+      <div>
+        <h3>Early Identification of Proposal Gaps</h3>
+        <p>Highlight missing or unclear technical response areas.</p>
       </div>
     </div>
-
-    <div class="grid two" style="margin-top:14px;">
-      <div class="formula">
-        <strong class="accent">ROI</strong><br>
-        (Annual Benefits − Annualized Total Costs)
-        ÷ Annualized Total Costs
-      </div>
-
-      <div class="formula">
-        <strong class="purple">PAYBACK PERIOD</strong><br>
-        Upfront Investment
-        ÷ Positive Monthly Net Benefit
+    <div class="card value">
+      <div class="icon">▱</div>
+      <div>
+        <h3>Reduced Repetitive Review Work</h3>
+        <p>Support teams with a more structured review process.</p>
       </div>
     </div>
-
-    <div class="footer">
-      <span>Business return must be measured, not assumed</span>
-      <span>05 / 06</span>
-    </div>
-  </section>
-
-
-  <!-- SLIDE 6 -->
-  <section class="slide">
-    <div class="header">
-      <span class="brand">CODE</span>
-      <span>EXECUTIVE RECOMMENDATION</span>
-    </div>
-
-    <h2>
-      Approve a <span class="accent">Measured Pilot.</span>
-    </h2>
-
-    <p class="subtitle">
-      Validate the technical performance and commercial
-      return before committing to dedicated infrastructure.
-    </p>
-
-    <div class="grid two">
-      <div class="card teal">
-        <div class="label">TRACK 01 / RECOMMENDATION</div>
-        <h3>Proceed with Tender Summarizer</h3>
-        <p>
-          Build an open-source application with controlled,
-          approved OpenAI API usage.
-        </p>
-
-        <span class="tag">Lower initial complexity</span>
-      </div>
-
-      <div class="card violet">
-        <div class="label violet">TRACK 02 / RECOMMENDATION</div>
-        <h3>Approve Feasibility Pilot Only</h3>
-        <p>
-          Benchmark private AI models before purchasing
-          servers or entering long-term GPU contracts.
-        </p>
-
-        <span class="tag violet">
-          Investment conditional on ROI
-        </span>
+    <div class="card teal value">
+      <div class="icon">⟳</div>
+      <div>
+        <h3>Reusable Institutional Tender Knowledge</h3>
+        <p>Retain verified insights from previous tenders
+        for future use.</p>
       </div>
     </div>
+  </div>
+  <div class="footer">
+    Expected benefits will be validated during the MVP pilot.
+  </div>
+</section>
 
-    <div class="section-title">MANAGEMENT APPROVAL REQUEST</div>
+<!-- SLIDE 5 -->
+<section class="slide">
+  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
+  <div class="accent"><span></span><span></span><span></span></div>
+  <h2>One-Month MVP Delivery Roadmap</h2>
+  <div class="subtitle">Four Weeks to a Controlled Pilot</div>
 
-    <div class="grid four">
-      <div class="card">
-        <h3>01 · Engineering Time</h3>
-        <p>Allocate development and evaluation capacity.</p>
+  <div class="timeline">
+    <div class="card teal week">
+      <div class="week-label">Week 1</div>
+      <div class="icon">▱</div>
+      <h3>Database &amp;<br>Document Management</h3>
+    </div>
+    <div class="card week">
+      <div class="week-label">Week 2</div>
+      <div class="icon">✧</div>
+      <h3>AI Integration &amp;<br>Requirements Extraction</h3>
+    </div>
+    <div class="card violet week">
+      <div class="week-label">Week 3</div>
+      <div class="icon">☏</div>
+      <h3>Gap Detection,<br>Interactive Chat &amp;<br>Knowledge Retrieval</h3>
+    </div>
+    <div class="card pink week">
+      <div class="week-label">Week 4</div>
+      <div class="icon">☑</div>
+      <h3>Testing, Validation &amp;<br>Executive Demo</h3>
+    </div>
+  </div>
+
+  <div class="card teal requirements">
+    <strong>MVP Start<br>Requirements</strong>
+    <span>▣ &nbsp; Suitable development computer</span>
+    <span>▤ &nbsp; Approved test documents</span>
+  </div>
+  <p class="roadmap-note">
+    Proposed pilot timeline; not a production deployment commitment.
+  </p>
+</section>
+
+<!-- SLIDE 6 -->
+<section class="slide">
+  <div class="brand"><img src="code-logo.png" alt="CODE logo"></div>
+  <div class="accent"><span></span><span></span><span></span></div>
+  <h2>MVP Budget &amp; Management Approval</h2>
+  <div class="subtitle">Investment Requirements &amp; Decision</div>
+
+  <div class="budget-layout">
+    <div class="card teal budget-panel">
+      <div class="budget-header">
+        <h3>Proposed Maximum<br>Budget — One Month</h3>
+        <div class="amount">SAR 1,000</div>
       </div>
-
-      <div class="card">
-        <h3>02 · Test Data</h3>
-        <p>Provide authorized tender samples.</p>
+      <table>
+        <thead>
+          <tr><th>Budget Item</th><th>Amount</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Claude Code + Codex</td><td>SAR 200</td></tr>
+          <tr><td>Groq API</td><td>SAR 100</td></tr>
+          <tr><td>Vision / Document Processing</td><td>SAR 200</td></tr>
+          <tr><td>Embedding API Contingency</td><td>SAR 50</td></tr>
+          <tr><td>Optional Backup / Storage</td><td>SAR 100</td></tr>
+          <tr><td>Testing &amp; Contingency</td><td>SAR 350</td></tr>
+          <tr class="total">
+            <td>Total Ceiling</td><td>SAR 1,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card approval-panel">
+      <h3>Management Approval Requested</h3>
+      <div class="approval-item">
+        <span class="check">✓</span>
+        <span>Authorize the one-month MVP pilot</span>
       </div>
-
-      <div class="card">
-        <h3>03 · AI Resources</h3>
-        <p>Approve limited API and OCR testing credits.</p>
+      <div class="approval-item">
+        <span class="check">✓</span>
+        <span>Approve budget up to SAR 1,000</span>
       </div>
-
-      <div class="card">
-        <h3>04 · Quotations</h3>
-        <p>Authorize server and private GPU price requests.</p>
+      <div class="approval-item">
+        <span class="check">✓</span>
+        <span>Provide a suitable development computer</span>
       </div>
     </div>
-
-    <div class="section-title">INVESTMENT DECISION GATES</div>
-
-    <div class="flow">
-      <div class="node">
-        <strong>BUILD</strong>
-        <span class="micro">Controlled prototype</span>
-      </div>
-
-      <span class="arrow">→</span>
-
-      <div class="node">
-        <strong>BENCHMARK</strong>
-        <span class="micro">
-          Quality, time, cost and reliability
-        </span>
-      </div>
-
-      <span class="arrow">→</span>
-
-      <div class="node">
-        <strong>INVEST</strong>
-        <span class="micro">
-          Scale only if value is proven
-        </span>
-      </div>
-    </div>
-
-    <div class="callout">
-      <strong>Executive Decision:</strong>
-      Approve proof of value first.
-      Invest in dedicated infrastructure only if
-      measurable financial and operational benefits
-      justify total project costs.
-    </div>
-
-    <div class="footer">
-      <span>Prepared by AI Engineer Abdulrahman</span>
-      <span>06 / 06</span>
-    </div>
-  </section>
+  </div>
+  <p class="budget-footnote">
+    Budget allocations are planning allowances.
+    Device purchase, salaries, and production deployment are excluded.
+  </p>
+</section>
 
 </main>
 
-<div class="progress">
-  <div id="progressBar"></div>
-</div>
-
-<nav class="navigation">
-  <button id="previousButton">Previous</button>
-  <span id="slideCounter">1 / 6</span>
-  <button id="nextButton">Next</button>
-</nav>
-
+<div class="controls">
+  <button onclick="changeSlide(-1)">◀ Previous</button>
+  <span id="counter">1 / 6</span>
+  <button onclick="changeSlide(1)">Next ▶</button>
+  <button onclick="window.print()">Print / PDF</button>
 </div>
 
 <script>
-  const slides = Array.from(
-    document.querySelectorAll(".slide")
-  );
+const slides = document.querySelectorAll(".slide");
+let current = 0;
 
-  const previousButton =
-    document.getElementById("previousButton");
+function showSlide(index) {
+  current = (index + slides.length) % slides.length;
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === current);
+  });
+  document.getElementById("counter").textContent =
+    `${current + 1} / ${slides.length}`;
+}
 
-  const nextButton =
-    document.getElementById("nextButton");
+function changeSlide(direction) {
+  showSlide(current + direction);
+}
 
-  const slideCounter =
-    document.getElementById("slideCounter");
-
-  const progressBar =
-    document.getElementById("progressBar");
-
-  let currentSlide = 0;
-
-  function showSlide(index) {
-    currentSlide = Math.max(
-      0,
-      Math.min(index, slides.length - 1)
-    );
-
-    slides.forEach((slide, i) => {
-      slide.classList.toggle(
-        "active",
-        i === currentSlide
-      );
-    });
-
-    previousButton.disabled =
-      currentSlide === 0;
-
-    nextButton.disabled =
-      currentSlide === slides.length - 1;
-
-    slideCounter.textContent =
-      `${currentSlide + 1} / ${slides.length}`;
-
-    progressBar.style.width =
-      `${((currentSlide + 1) / slides.length) * 100}%`;
+document.addEventListener("keydown", event => {
+  if (event.key === "ArrowRight" ||
+      event.key === "PageDown" ||
+      event.key === " ") {
+    event.preventDefault();
+    changeSlide(1);
   }
+  if (event.key === "ArrowLeft" ||
+      event.key === "PageUp") {
+    event.preventDefault();
+    changeSlide(-1);
+  }
+  if (event.key === "Home") showSlide(0);
+  if (event.key === "End") showSlide(slides.length - 1);
+});
 
-  previousButton.addEventListener("click", () => {
-    showSlide(currentSlide - 1);
-  });
-
-  nextButton.addEventListener("click", () => {
-    showSlide(currentSlide + 1);
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "ArrowRight") {
-      showSlide(currentSlide + 1);
-    }
-
-    if (event.key === "ArrowLeft") {
-      showSlide(currentSlide - 1);
-    }
-
-    if (event.key === "Home") {
-      showSlide(0);
-    }
-
-    if (event.key === "End") {
-      showSlide(slides.length - 1);
-    }
-  });
-
-  showSlide(0);
+showSlide(0);
 </script>
 
 </body>
